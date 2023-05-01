@@ -49,7 +49,7 @@ class ContaController extends Controller
     public function create()
     {
         $estados = $this->estados->all();
-        $status = $this->status->all()->sortby('status');
+        $status = $this->status->find(2);
         $civil = $this->civil->all()->sortby('estado_civil');
         $planos = $this->planos->planosAtivos()->sortby('plano');
         $parentescos = $this->parentescos->all()->sortby('parentesco');
@@ -68,7 +68,7 @@ class ContaController extends Controller
 
         try{
             $contaID=$this->contas->create([
-                'tipo_status_id' => $request->status,
+                'tipo_status_id' => 2,
                 'plano_id' => $request->plano,
             ])->id;            
         }catch(QueryException $ex){ 
